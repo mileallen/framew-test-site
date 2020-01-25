@@ -6,13 +6,14 @@
     <link rel="stylesheet" type="text/css" href="style.css">
     <!-- Vue -->
     <!-- Delete ".min" for console warnings in development -->
-    <script src="../vue.js"></script>
+    <script src="./vue.js"></script>
     <!-- Firebase -->
-    <script src="../firebase.js"></script>
+    <script src="./firebase.js"></script>
     <!-- VueFire -->
-    <script src="../vuefire.js"></script>
+    <script src="./vuefire.js"></script>
   </head>
   <body>
+    <h1> Vue and Firebase test page    </h1><br/><br/>
     <div id="app">
       <ul is="transition-group">
         <li v-for="user in users" class="user" :key="user['.key']">
