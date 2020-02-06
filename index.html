@@ -3,34 +3,48 @@
   <head>
     <title>Vue.js firebase + validation example</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="mystyles.css">
     <!-- Vue -->
     <!-- Delete ".min" for console warnings in development -->
-    <script src="./vue.js"></script>
+    <script src="../vue.js"></script>
     <!-- Firebase -->
-    <script src="./firebase.js"></script>
+    <script src="../firebase.js"></script>
     <!-- VueFire -->
-    <script src="./vuefire.js"></script>
+    <script src="../vuefire.js"></script>
   </head>
   <body>
-    <h1> Vue and Firebase test page    </h1><br/><br/>
-    <div id="app">
+    <section class="hero is-primary">
+      <div class="hero-body">
+        <h1 class="title">
+          Vue js and Firebase Trial
+        </h1>
+
+    <div id="app" class="columns">
+
+      <div class="column is-one-third">
       <ul is="transition-group">
         <li v-for="user in users" class="user" :key="user['.key']">
           <span>{{user.name}} - {{user.email}}</span>
-          <button v-on:click="removeUser(user)">X</button>
+          <button class="is-primary" v-on:click="removeUser(user)">X</button>
         </li>
       </ul>
+    </div>
+
+    <div class="column is-one-third">
       <form id="form" v-on:submit.prevent="addUser">
-        <input v-model="newUser.name" placeholder="Add Name">
-        <input v-model="newUser.email" placeholder="Add Email">
-        <input type="submit" value="Add User">
+        <input class="input" v-model="newUser.name" placeholder="Add Name"><br/><br/>
+        <input class="input" v-model="newUser.email" placeholder="Add Email"><br/><br/>
+        <input class="button is-link" type="submit" value="Add User">
       </form>
       <ul class="errors">
         <li v-show="!validation.name">Name cannot be empty.</li>
         <li v-show="!validation.email">Please provide a valid email address.</li>
       </ul>
     </div>
+  </div>
+  </div>
+</section>
+
     <script src="app.js"></script>
   </body>
 </html>
