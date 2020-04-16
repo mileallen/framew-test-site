@@ -6,6 +6,8 @@
     <title>Todo List</title>
 
     <link rel="stylesheet" href="../css/pure-min.css">
+    <link rel="stylesheet" href="./other.css">
+
 
     <script src="../alpine.js"></script>
         <!-- Firebase -->
@@ -14,18 +16,68 @@
 
 </head>
 <body>
+
+    <script>
+
+var fbconfig = {
+    apiKey: "AIzaSyB2vWUs5xac3PmF-c3V6iFq9WiHkK3lw4U",
+    authDomain: "alpine-mile.firebaseapp.com",
+    databaseURL: "https://alpine-mile.firebaseio.com",
+    projectId: "alpine-mile",
+    storageBucket: "alpine-mile.appspot.com",
+    messagingSenderId: "359761817676",
+    appId: "1:359761817676:web:9e511aa5a9c3a8baca84e9"
+  };
+  
+  firebase.initializeApp(fbconfig);
+  
+  var tuduRef = firebase.database().ref('tudus');
+
+  //var tds = [ {id: '', task: 'First fetch the list', isComplete: true } ];
+  var tds = new Array;
+
+    tuduRef.once('value').then(function(snap) {
+            snap.forEach(function(childSnapshot) {
+            tds.push({
+                id: childSnapshot.val().id,
+                task: childSnapshot.val().task,
+                isComplete: childSnapshot.val().isComplete
+            }); 
+        }
+      );
+      console.log('promise done');
+      //console.log(tds);
+      document.getElementById("fetchTD").disabled = false;
+      document.getElementById("fetchTD").innerText="Ready to fetch Todo list!";
+      //todofunc().setNow();
+      //this.todos= tds;
+    })
+
+    </script>
+
+    <style>
+        .is-complete {
+        color: #c2c2c2;
+        text-decoration: line-through;
+        }
+
+        button {
+            cursor: pointer;
+        }
+    </style>
+
     
     <div class="pure-g" id="app" x-data="todofunc()" x-init="setTudus()"> <div class="pure-u-1-3"></div>
         
         <div class="pure-u-1-3" style="padding: 5rem;">
-            <button class="pure-button" type="submit" @click="setNow()"> List Tudus </button><br/>
+            <button id="fetchTD" disabled="true" class="pure-button pure-button-secondary" type="submit" @click="setNow()"> Wait for it... </button><br/>
      
             <div>
             <template x-if="todos" x-for="todo in todos" :key="todo.id">
                 <p :class="{ 'is-complete': todo.isComplete === true }">
-                    <span x-text="todo.task"></span>
-                    <input type="checkbox" x-model="todo.isComplete" />
                     <button class="pure-button" @click="removeTask(todo.id)">✖</button>
+                    <span x-text="todo.task"></span>
+                    <label class="chekk"><input @input="togDone(todo.id, todo.isComplete)" type="checkbox" x-model="todo.isComplete" /><span></span></label>
                 </p>
             </template>
         </div>
