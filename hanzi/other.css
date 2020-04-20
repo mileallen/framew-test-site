@@ -1,3 +1,9 @@
+.screen1{
+  display: flex; 
+  flex-direction: column; 
+  justify-content: space-between; 
+  align-items: center;
+}
 
 .grid {
 	display: grid;
@@ -5,7 +11,7 @@
 	grid-template-rows: repeat(4, 90px);
 	grid-gap: 10px;
 	position: relative;
-	}
+}
 
 .card {
 position: relative;
@@ -57,15 +63,16 @@ font-family: kaiti;
 
   @font-face {
     font-family: kaiti;
-    src: url("//db.onlinewebfonts.com/t/8a1e9fe86f7a9489ec091ec4b78af185.woff") format("woff");
+    src: url(kaiti-GB.woff);
+    src: urlLLL("//db.onlinewebfonts.com/t/8a1e9fe86f7a9489ec091ec4b78af185.woff") format("woff");
 
   }
 
   .score{
     color: rgba(240, 240, 240, 0.3);
-    font-size: 3rem;
+    font-size: 2.5rem;
     padding: 2rem;
-    flex:initial;
+    flex: initial;
   }
 
   .button {
