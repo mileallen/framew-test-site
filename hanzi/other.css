@@ -5,7 +5,6 @@
 	grid-template-rows: repeat(4, 90px);
 	grid-gap: 10px;
 	position: relative;
-	padding-left: 2rem;
 	}
 
 .card {
@@ -66,6 +65,7 @@ font-family: kaiti;
     color: rgba(240, 240, 240, 0.3);
     font-size: 3rem;
     padding: 2rem;
+    flex:initial;
   }
 
   .button {
