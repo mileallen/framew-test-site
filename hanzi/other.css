@@ -18,11 +18,14 @@
   flex-direction: column; 
   align-items: center;
   height: 100%;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+
 }
 
 
 .screen1{
-  height: 650px;
+  height: 700px;
   background-color: #2c2c2c;
 }
 
@@ -136,12 +139,16 @@ font-family: kaiti;
     border-radius: 8px;
   }
 
-  @font-face {
-    font-family: kaiti;
-    src: url(kaiti-GB.woff);
-    src: urlLLL("//db.onlinewebfonts.com/t/8a1e9fe86f7a9489ec091ec4b78af185.woff") format("woff");
-
+  @font-face {font-family: "kaiti"; 
+    font-display: swap;
+    src: url("https://db.onlinewebfonts.com/t/8a1e9fe86f7a9489ec091ec4b78af185.eot"); 
+    src: url("https://db.onlinewebfonts.com/t/8a1e9fe86f7a9489ec091ec4b78af185.eot?#iefix") format("embedded-opentype"), 
+    url("https://db.onlinewebfonts.com/t/8a1e9fe86f7a9489ec091ec4b78af185.woff2") format("woff2"), 
+    url("https://db.onlinewebfonts.com/t/8a1e9fe86f7a9489ec091ec4b78af185.woff") format("woff"), 
+    url("https://db.onlinewebfonts.com/t/8a1e9fe86f7a9489ec091ec4b78af185.ttf") format("truetype"), 
+    url("https://db.onlinewebfonts.com/t/8a1e9fe86f7a9489ec091ec4b78af185.svg#KaiTi_GB2312") format("svg"); 
   }
+
 
   .score{
     color: rgba(240, 240, 240, 0.3);
