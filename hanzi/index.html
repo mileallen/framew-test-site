@@ -1,62 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Learn Hanzi</title>
 </head>
 
-    <link rel="stylesheet" href="../css/pure-min.css">
-    <link rel="stylesheet" href="./other.css">
-    <link rel="stylesheet" href="../css/grids-responsive-min.css">
+<link rel="stylesheet" href="../css/pure-min.css">
+<link rel="stylesheet" href="./other.css">
+<link rel="stylesheet" href="../css/grids-responsive-min.css">
 
 
-    <script src="../alpine.js"></script>
+<script src="../alpine.js"></script>
 
 <body style="background-color: #202020; font-size: 1.5rem;">
 
-    <div class="pure-g" id="app" x-data="hanyuGame()" x-initTTT="setTudus()"> 
-    <div class="pure-u-1 pure-u-md-1-3"></div>
-        
-    <div class="pure-u-1 pure-u-md-1-3">
-
-        <div class="screen1">
-
-        <header class="score"> Score: <span style="transition: 0.7s" x-text="totalMatches"></span></header>
-        
-        <div style="flex: 1">
-        <div class="grid">
+    <div class="pure-g" id="app" x-data="hanyuGame()" x-initTTT="setTudus()">
+        <div class="pure-u-1 pure-u-md-1-3">
             
-         <template x-if="cards" x-for="card in cards" :key="card.id">
+        <div class="containCent"><span class="name">汉字游戏</span>
+            <span class="descrip">Learn and memorize Hanzi charchters, or whatever else!</span>
+        </div>
             
-            <div class="card" :class="{'c-flipped': card.flipped === true, 'c-matched': card.matched === true}">
-                <button class="front" @click="{card.flipped = true} afterFlip(card)">
-                        ⭐
-                </button>
-                <div class="back" :class="{'charClas': card.char != null}" x-text="card.char || card.mean"></div>
+
+        </div>
+
+        <div class="pure-u-1 pure-u-md-1-3">
+
+            <div class="containCol screen1">
+
+                <div class="header">
+                    <button :disabled="gameOver" x-text="homePage ? 'Edit Tiles' : 'Back to Game'" class="button" style="font-size: 1rem;" @click="homePage=!homePage" :class="{'redBG': homePage === false}"></button>
+                    <button class="button" style="font-size: 1rem;" @click="resetGame()">Reset Game</button>
+                </div>
+
+
+                <template x-if="homePage && !gameOver">
+
+                    <div class="containCol">
+
+                        <div class="score"> Score: <span x-text="totalMatches"></span></div>
+
+                        <div class="grid">
+
+                            <template x-if="cards" x-for="card in cards" :key="card.id">
+
+                                <div class="card"
+                                    :class="{'c-flipped': card.flipped === true, 'c-matched': card.matched === true}">
+                                    <button class="front" @click="{card.flipped = true}; afterFlip(card)">
+                                        ⭐
+                                    </button>
+                                    <div class="back" :class="{'charClas': card.char != null}"
+                                        x-text="card.char || card.mean"></div>
+                                </div>
+
+                            </template>
+                        </div>
+
+                    </div>
+
+                </template>
+
+                <template x-if="!homePage && !gameOver">
+
+                    <div class="containRow">
+                        <div style="flex:initial; width: 26%; display: flex; flex-direction: column;"><span
+                                style="font-size: 1.5rem; color: rgba(250, 250, 250, 0.3);">Cards</span>
+                            <template x-if="kanjis" x-for="kanji in kanjis" :key="kanji.id">
+                                <input class="input" type="text" x-model="kanji.char" />
+                            </template>
+                        </div>
+                        <div style="flex:initial; width: 26%; display: flex; flex-direction: column;"><span
+                                style="font-size: 1.5rem; color: rgba(250, 250, 250, 0.3);">Match with</span>
+                            <template x-if="words" x-for="word in words" :key="word.id">
+                                <input class="input" type="text" x-model="word.mean" />
+                            </template>
+                        </div>
+
+                    </div>
+
+                </template>
+
+                <template x-if="gameOver">
+                <div class="wellDone">
+                <p style="color:rgba(202, 202, 202, 0.3); font-size: 3rem;">Well done!</p>
+                </div>
+                </template>
+
+                <div style="flex: initial; align-self: flex-end; width:100%;">
+
+                    <p style="font-size: 0.7rem; color: rgba(250, 250, 250, 0.3); line-height: 1rem; margin-left: auto; margin-right: auto; width:80%; text-align: center;">
+                        By <a href="https://twitter.com/sachwry">Sach Wry</a> | Yours under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a> <br />
+                        Made with <a href="https://github.com/alpinejs/alpine">Alpine JS</a> by <a href="https://twitter.com/calebporzio">Caleb Porzio</a>.</p>
+                </div>
+
             </div>
 
-        </template>
-    </div>
-    </div>
-    
-    <button style="flex: 1;" class="button" style="font-size: 1.5rem;" @click="resetGame()">Reset</button>
-    <div style="flex: initial; width:80%">
-    <p style="font-size: 0.7rem; color: rgba(250, 250, 250, 0.3); line-height: 1rem;"> 
-        Crafted by Sach Wry | <a style="color: rgba(250, 250, 250, 0.3);" href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0 </a> <br/>  
-        Yours to learn and memorize Hanzi charchters. V2.0 will allow you to pick your charachters.</p> </div>
+        </div>
+
+        <div class="pure-u-1 pure-u-md-1-3">
+            <div class="containCent"><span class="name2">Objective</span>
+                <p class="descrip2">Could not be simpler. It's like one of those Pelmanism card games - Concentration, <i>Pexeso</i>, 神経衰弱, Match-up or <a href="https://en.wikipedia.org/wiki/Concentration_(card_game)">whatever</a> you call it. Find matching pairs., </p>
+                <p class="descrip2">Note: Cards are matched in pairs, in sequence => [1st to 2nd], [3rd to 4th]... and so on. You flip one, then a second, and if they don't match they flip right back. Which implies that the pairing stars anew. If you think the third card flipped matches the second you just saw, you need to flip that card next.</p>
+            </div>
+        </div>
 
     </div>
 
+
+
+
+
     </div>
 
-    <div class="pure-u-1 pure-u-md-1-3"></div>
+    <script src="./code.js"></script>
 
-    </div>
-     
 
-<script src="./code.js"></script>
-
-    
 </body>
+
 </html>
