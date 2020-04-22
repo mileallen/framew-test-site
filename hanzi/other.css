@@ -20,13 +20,14 @@
   height: 100%;
   padding-top: 1rem;
   padding-bottom: 1rem;
-
 }
 
 
 .screen1{
   height: 700px;
   background-color: #2c2c2c;
+  border-radius: 1.5rem;
+  border-color: transparent;
 }
 
 .header{
@@ -50,7 +51,7 @@
 position: relative;
 transition: 0.3s;
 transform-style: preserve-3d;
-font-family: kaiti;
+/* font-family: kaiti; */
 }
 
 .card .front,  .card .back{
@@ -70,6 +71,39 @@ font-family: kaiti;
 
   .charClas{
     font-size: 4rem;
+    font-family: kaiti;
+  }
+
+  .card .front {
+    background: #be1818;
+    color: rgba(40, 40, 40, 0.3);
+    font-size: 2.5rem;
+    z-index: 2;
+    transform: rotateY(0deg);
+  }
+
+  .card .back {
+    background: #dddddd;
+  }
+
+  .c-flipped, .c-matched, .back{
+    transform: rotateY(180deg);
+  }
+  
+  .c-matched, .back{
+    opacity: 0.8;
+    border: 5px solid #ffee00;
+    border-radius: 8px;
+  }
+
+  @font-face {font-family: "kaiti"; 
+    font-display: swap;
+    src: url("https://db.onlinewebfonts.com/t/8a1e9fe86f7a9489ec091ec4b78af185.eot"); 
+    src: url("https://db.onlinewebfonts.com/t/8a1e9fe86f7a9489ec091ec4b78af185.eot?#iefix") format("embedded-opentype"), 
+    url("https://db.onlinewebfonts.com/t/8a1e9fe86f7a9489ec091ec4b78af185.woff2") format("woff2"), 
+    url("https://db.onlinewebfonts.com/t/8a1e9fe86f7a9489ec091ec4b78af185.woff") format("woff"), 
+    url("https://db.onlinewebfonts.com/t/8a1e9fe86f7a9489ec091ec4b78af185.ttf") format("truetype"), 
+    url("https://db.onlinewebfonts.com/t/8a1e9fe86f7a9489ec091ec4b78af185.svg#KaiTi_GB2312") format("svg"); 
   }
 
   .redBG {
@@ -116,39 +150,6 @@ font-family: kaiti;
     color: rgba(250, 250, 250, 0.3);
     text-decoration: none;
   }
-  
-  .card .front {
-    background: #be1818;
-    color: rgba(40, 40, 40, 0.3);
-    font-size: 2.5rem;
-    z-index: 2;
-    transform: rotateY(0deg);
-  }
-
-  .card .back {
-    background: #dddddd;
-  }
-
-  .c-flipped, .c-matched, .back{
-    transform: rotateY(180deg);
-  }
-  
-  .c-matched, .back{
-    opacity: 0.8;
-    border: 5px solid #ffee00;
-    border-radius: 8px;
-  }
-
-  @font-face {font-family: "kaiti"; 
-    font-display: swap;
-    src: url("https://db.onlinewebfonts.com/t/8a1e9fe86f7a9489ec091ec4b78af185.eot"); 
-    src: url("https://db.onlinewebfonts.com/t/8a1e9fe86f7a9489ec091ec4b78af185.eot?#iefix") format("embedded-opentype"), 
-    url("https://db.onlinewebfonts.com/t/8a1e9fe86f7a9489ec091ec4b78af185.woff2") format("woff2"), 
-    url("https://db.onlinewebfonts.com/t/8a1e9fe86f7a9489ec091ec4b78af185.woff") format("woff"), 
-    url("https://db.onlinewebfonts.com/t/8a1e9fe86f7a9489ec091ec4b78af185.ttf") format("truetype"), 
-    url("https://db.onlinewebfonts.com/t/8a1e9fe86f7a9489ec091ec4b78af185.svg#KaiTi_GB2312") format("svg"); 
-  }
-
 
   .score{
     color: rgba(240, 240, 240, 0.3);
@@ -237,7 +238,7 @@ font-family: kaiti;
 
   .wellDone{
     flex: initial; 
-    background-color: #5e5e5e; 
+    background-color: #2c2c2c; 
     width: 80%; 
     height: 70%;
     border-radius: 1rem;
