@@ -34,11 +34,16 @@ return {
     twoCards: { flip1: {}, flip2: {} },
 
     totalMatches: 0,
+    totMoves: 0,
     countFlip: 0,
     gameOver: false,
 
     resetGame(){
 
+        this.totalMatches=0
+        this.countFlip=0
+        this.totMoves=0
+        
         this.gameOver=false
         this.homePage=true
 
@@ -54,8 +59,7 @@ return {
 
         this.cards = [...kanjis, ...words]
         .sort(() => Math.random() - Math.random())
-        this.totalMatches=0
-        this.countFlip=0
+        
         this.twoCards.flip1 = this.twoCards.flip2 = null
     },
 
@@ -68,6 +72,7 @@ return {
         return
     }
     else{
+        this.totMoves++
         this.twoCards.flip2 = whichCard
         if (this.twoCards.flip1.id == whichCard.id){
             
