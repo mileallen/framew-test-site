@@ -4,5 +4,5 @@ Just a collection of protoype apps.
 
 ## For instance:
 
-[Hanzi memory game](https://mulls.ml/hanzi) - made with [Alpine.js](https://github.com/alpinejs/alpine)
+[Hanzi memory game](https://mulls.ml/hanzi) - made with [Alpine.JS](https://github.com/alpinejs/alpine) and [Chota.CSS] (https://github.com/jenil/chota)
 
