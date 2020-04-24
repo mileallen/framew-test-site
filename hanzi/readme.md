@@ -12,4 +12,4 @@ Use the 'Edit' button to change the charachters when done with this set. Or, of 
 
 By [Sach Wry](https://twitter.com/sachwry) | Yours under [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/)
 
-Made with [Alpine JS](https://github.com/alpinejs/alpine) by [Caleb Porzio](https://twitter.com/calebporzio) and [Chota.CSS](https://github.com/jenil/chota) by [Jenil Gogari](https://jgog.in/). Mandarin font from [oNline Web Fonts](https://www.onlinewebfonts.com) CC-BY.
+Made with [Alpine JS](https://github.com/alpinejs/alpine) by [Caleb Porzio](https://twitter.com/calebporzio) and [Chota CSS](https://github.com/jenil/chota) by [Jenil Gogari](https://jgog.in/). Mandarin font from [oNline Web Fonts](https://www.onlinewebfonts.com) CC-BY.
