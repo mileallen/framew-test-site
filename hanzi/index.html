@@ -5,21 +5,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Learn Hanzi charachters</title>
+    
+<link rel="stylesheet" href="./other.css">
 
-    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/pure-min.css" integrity="sha384-oAOxQR6DkCoMliIh8yFnu25d7Eq/PHS21PClpwjOTeU2jRSq11vu66rf90/cZr47" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/grids-responsive-min.css">
-    <link rel="stylesheet" href="./other.css">
-    
-    
-    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+
+<!-- <script src="../alpine.js"></script> -->
 
 </head>
 
 
-<body style="background-color: #2c2c2c; font-size: 1.5rem;">
+<body style="background-color: #2c2c2c;">
 
-    <div class="pure-g" id="app" x-data="hanyuGame()">
-        <div class="pure-u-1 pure-u-md-1-3">
+    <div class="row" id="app" x-data="hanyuGame()">
+        <div class="col-12 col-6-md col-4-lg">
             
         <div class="containCent"><span class="name">汉字游戏</span>
             <span class="descrip">Learn and memorize Hanzi charchters, or whatever else!</span>
@@ -28,13 +27,14 @@
 
         </div>
 
-        <div class="pure-u-1 pure-u-md-1-3">
+        <div class="col-12 col-6-md col-4-lg">
 
             <div class="containCol screen1">
 
-                <div class="header">
-                    <button :disabled="gameOver" x-text="homePage ? 'Edit Tiles' : 'Back to Game'" class="button" style="font-size: 1rem;" @click="homePage=!homePage" :class="{'redBG': homePage === false}"></button>
-                    <button class="button" style="font-size: 1rem;" @click="resetGame()">Reset Game</button>
+                <div class="headTop">
+                    <button class="button outline secondary" :disabled="gameOver" x-text="homePage ? 'Edit Tiles' : 'Back to Game'" @click="homePage=!homePage" :class="{'redBG': homePage === false}"></button>
+                    
+                    <button class="button outline secondary" @click="resetGame()">Reset Game</button>
                 </div>
 
 
@@ -46,15 +46,15 @@
 
                         <div class="grid">
 
-                            <template x-if="cards" x-for="card in cards" :key="card.id">
+                            <template x-if="tiles" x-for="tile in tiles" :key="tile.id">
 
-                                <div class="card"
-                                    :class="{'c-flipped': card.flipped === true, 'c-matched': card.matched === true}">
-                                    <button class="front" @click="{card.flipped = true}; afterFlip(card)">
+                                <div class="tile"
+                                    :class="{'c-flipped': tile.flipped === true, 'c-matched': tile.matched === true}">
+                                    <button class="front" @click="{tile.flipped = true}; afterFlip(tile)">
                                         ☆
                                     </button>
-                                    <div class="back" :class="{'charClas': card.char != null}"
-                                        x-text="card.char || card.mean"></div>
+                                    <div class="back" :class="{'charClas': tile.char != null}"
+                                        x-text="tile.char || tile.mean"></div>
                                 </div>
 
                             </template>
@@ -67,16 +67,16 @@
                 <template x-if="!homePage && !gameOver">
 
                     <div class="containRow">
-                        <div style="flex:initial; width: 26%; display: flex; flex-direction: column;"><span
-                                style="font-size: 1.5rem; color: rgba(250, 250, 250, 0.3);">Cards</span>
+                        <div class="containCol"><span
+                                style="font-size: 1.5rem; color: rgba(250, 250, 250, 0.3);">Tiles</span>
                             <template x-if="kanjis" x-for="kanji in kanjis" :key="kanji.id">
-                                <input class="input" type="text" x-model="kanji.char" />
+                                <input class="input text-center inputMarg" type="text" x-model="kanji.char" />
                             </template>
                         </div>
-                        <div style="flex:initial; width: 26%; display: flex; flex-direction: column;"><span
+                        <div class="containCol"><span
                                 style="font-size: 1.5rem; color: rgba(250, 250, 250, 0.3);">Match with</span>
                             <template x-if="words" x-for="word in words" :key="word.id">
-                                <input class="input" type="text" x-model="word.mean" />
+                                <input class="input text-center inputMarg" type="text" x-model="word.mean"/>
                             </template>
                         </div>
 
@@ -92,7 +92,7 @@
 
                 <div style="flex: initial; align-self: flex-end; width:100%; padding-top: 1rem;">
 
-                    <p style="font-size: 0.7rem; color: rgba(250, 250, 250, 0.3); line-height: 1rem; margin-left: auto; margin-right: auto; width:80%; text-align: center;">
+                    <p style="font-size: 0.9rem; color: rgba(250, 250, 250, 0.3); line-height: 1rem; margin-left: auto; margin-right: auto; width:80%; text-align: center;">
                         By <a href="https://twitter.com/sachwry">Sach Wry</a> | Yours under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a> <br />
                         Made with <a href="https://github.com/alpinejs/alpine">Alpine JS</a> by <a href="https://twitter.com/calebporzio">Caleb Porzio</a>. Mandarin font from <a href="http://www.onlinewebfonts.com">oNline Web Fonts</a> CC BY</p>
                 </div>
@@ -101,10 +101,10 @@
 
         </div>
 
-        <div class="pure-u-1 pure-u-md-1-3">
+        <div class="col-12 col-6-md col-4-lg">
             <div class="containCent"><span class="name2">Objective</span>
-                <p class="descrip2">Could not be simpler. It's like one of those Pelmanism card games - Concentration, <i>Pexeso</i>, 神経衰弱, Match-up or <a href="https://en.wikipedia.org/wiki/Concentration_(card_game)">whatever</a> you call it. Find matching pairs.</p>
-                <p class="descrip2">Note: Cards are matched in pairs, in sequence => [1st to 2nd], [3rd to 4th]... and so on. You flip one, then a second, and if they don't match they flip right back. Which implies that the pairing stars anew. If you think the third card flipped matches the second you just saw, you need to flip that card next.</p>
+                <p class="descrip2">Could not be simpler. It's like one of those Pelmanism card games - Concentration, <i>Pexeso</i>, 神経衰弱, Match-up or <a href="https://en.wikipedia.org/wiki/Concentration_(tile_game)">whatever</a> you call it. Just find matching pairs.</p>
+                <p class="descrip2">Note: tiles are matched in pairs, in sequence => [1st to 2nd], [3rd to 4th]... and so on. Say you flip one, X, then a second, Y, if they don't match they flip right back. That's one 'move', which implies that the pairing stars anew. If you think the next tile you then flip, Z, matches the second you just saw,, Y, you need to flip that tile, Y, next.</p>
                 <p class="descrip2">Use the 'Edit' button to change the charachters when done with this set. Or, of course, you can use the game to help memorise words in a different language, or indeed, anything else you might use flashcards for. Kids can pair emojis with second-language words. Endless possiblities!</p>
             </div>
         </div>

@@ -28,10 +28,10 @@ return {
 
     homePage: true,
 
-    cards: [...kanjis, ...words]
+    tiles: [...kanjis, ...words]
     .sort(() => Math.random() - Math.random()),
 
-    twoCards: { flip1: {}, flip2: {} },
+    twotiles: { flip1: {}, flip2: {} },
 
     totalMatches: 0,
     totMoves: 0,
@@ -57,29 +57,29 @@ return {
             word.matched=false
         })
 
-        this.cards = [...kanjis, ...words]
+        this.tiles = [...kanjis, ...words]
         .sort(() => Math.random() - Math.random())
         
-        this.twoCards.flip1 = this.twoCards.flip2 = null
+        this.twotiles.flip1 = this.twotiles.flip2 = null
     },
 
-    afterFlip(whichCard) {
+    afterFlip(whichtile) {
        
     
     if (this.countFlip<1) { 
         this.countFlip++
-        this.twoCards.flip1 = whichCard
+        this.twotiles.flip1 = whichtile
         return
     }
     else{
         this.totMoves++
-        this.twoCards.flip2 = whichCard
-        if (this.twoCards.flip1.id == whichCard.id){
+        this.twotiles.flip2 = whichtile
+        if (this.twotiles.flip1.id == whichtile.id){
             
                 setTimeout( () => {
-                this.twoCards.flip1.matched=true
-                this.twoCards.flip2.matched=true
-                this.twoCards.flip1 = this.twoCards.flip2 = null
+                this.twotiles.flip1.matched=true
+                this.twotiles.flip2.matched=true
+                this.twotiles.flip1 = this.twotiles.flip2 = null
                 this.totalMatches++
 
                 if (this.totalMatches>5) {
@@ -94,9 +94,9 @@ return {
         else {                                 
             this.countFlip=0
             setTimeout( () => {
-                this.twoCards.flip1.flipped=false
-                this.twoCards.flip2.flipped=false
-                this.twoCards.flip1 = this.twoCards.flip2 = null
+                this.twotiles.flip1.flipped=false
+                this.twotiles.flip2.flipped=false
+                this.twotiles.flip1 = this.twotiles.flip2 = null
                 }, 450)
         }
 

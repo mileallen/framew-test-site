@@ -1,3 +1,6 @@
+@import url(chota.min.css);
+
+
 .containCol {
   display: flex; 
   justify-content:space-between; 
@@ -24,20 +27,22 @@
 
 
 .screen1{
-  height: 700px;
+  height: 600px;
   /* background-color: #2c2c2c; */
   background-color: #202020;
   border-radius: 1.5rem;
   border-color: transparent;
 }
 
-.header{
+.headTop{
   flex: initial; 
   width:100%; 
-  align-self: flex-start; 
+  /* align-self: flex-start; */
   display: flex; 
   flex-direction: row; 
   justify-content: space-between;
+  margin: 1rem;
+  padding: 1rem;
 }
 
 .grid {
@@ -48,14 +53,14 @@
 	position: relative;
 }
 
-.card {
+.tile {
 position: relative;
 transition: 0.3s;
 transform-style: preserve-3d;
 /* font-family: kaiti; */
 }
 
-.card .front,  .card .back{
+.tile .front,  .tile .back{
     position: absolute;
     top: 0;
     left: 0;
@@ -75,7 +80,7 @@ transform-style: preserve-3d;
     font-family: kaiti;
   }
 
-  .card .front {
+  .tile .front {
     background: #be1818;
     color: rgba(40, 40, 40, 0.3);
     font-size: 2.5rem;
@@ -83,7 +88,7 @@ transform-style: preserve-3d;
     transform: rotateY(0deg);
   }
 
-  .card .back {
+  .tile .back {
     background: #dddddd;
   }
 
@@ -99,28 +104,32 @@ transform-style: preserve-3d;
 
   @font-face {font-family: "kaiti"; 
     font-display: swap;
-    src: url("https://db.onlinewebfonts.com/t/8a1e9fe86f7a9489ec091ec4b78af185.eot"); 
-    src: url("https://db.onlinewebfonts.com/t/8a1e9fe86f7a9489ec091ec4b78af185.eot?#iefix") format("embedded-opentype"), 
+    src: url("kaiti-GB.woff") format("woff");
+    src: url("https://db.onlinewebfonts.com/t/8a1e9fe86f7a9489ec091ec4b78af185.eot"), url("https://db.onlinewebfonts.com/t/8a1e9fe86f7a9489ec091ec4b78af185.eot?#iefix") format("embedded-opentype"), 
     url("https://db.onlinewebfonts.com/t/8a1e9fe86f7a9489ec091ec4b78af185.woff2") format("woff2"), 
-    url("https://db.onlinewebfonts.com/t/8a1e9fe86f7a9489ec091ec4b78af185.woff") format("woff"), 
     url("https://db.onlinewebfonts.com/t/8a1e9fe86f7a9489ec091ec4b78af185.ttf") format("truetype"), 
     url("https://db.onlinewebfonts.com/t/8a1e9fe86f7a9489ec091ec4b78af185.svg#KaiTi_GB2312") format("svg"); 
   }
 
   .redBG {
     background-color: #be1818 !important;
-    color: #bebebe !important; 
+    color: #e2e2e2 !important; 
+  }
+
+  .inputMarg{
+    margin: 0.2rem;
+    padding: 0.2rem;
   }
 
   .name{
-    font-size: 5rem;
+    font-size: 6.5rem;
     color: #d1cfcf;
     font-family: kaiti;
     margin: 10px;
   }
 
   .descrip{
-    font-size: 1.1rem;
+    font-size: 1.7rem;
     color: #d1cfcf;
     font-family: sans-serif;
     width:80%;
@@ -137,7 +146,7 @@ transform-style: preserve-3d;
   }
 
   .descrip2{
-    font-size: 0.8rem;
+    font-size: 1.3rem;
     font-weight: 300;
     color: #d1cfcf;
     font-family: sans-serif;
@@ -159,87 +168,9 @@ transform-style: preserve-3d;
     flex: initial;
   }
 
-  .button, .input {
-    background-color: #9e9e9e;
-    border-color: #dbdbdb;
-    border-width: 2px;
-    color: #363636;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    
-    text-align: center;
-    white-space: nowrap;
-
-    -moz-appearance: none;
-    -webkit-appearance: none;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    border: 2px solid transparent;
-    border-radius: 4px;
-    -webkit-box-shadow: none;
-            box-shadow: none;
-    display: -webkit-inline-box;
-    display: -ms-inline-flexbox;
-    display: inline-flex;
-    font-size: 1.5rem;
-    height: 2.5em;
-    -webkit-box-pack: start;
-        -ms-flex-pack: start;
-            justify-content: flex-start;
-    line-height: 1.5;
-
-    position: relative;
-    vertical-align: top;
-
-  }
-
-  .input{
-    margin: 0.2rem;
-
-    background-color: #EFF0EB;
-    border-color: transparent;
-    color: #363636;
-  }
-
-  .button {
-    
-    cursor: pointer;
-    
-    padding-bottom: calc(1rem - 2px);
-    padding-left: 1em;
-    padding-right: 1em;
-    padding-top: calc(1rem - 2px);
-    
-    padding-bottom: calc(0.5em - 2px);
-    padding-left: calc(0.75em - 2px);
-    padding-right: calc(0.75em - 2px);
-    padding-top: calc(0.5em - 2px);
-    margin: 1.5rem;
-
-  }
-
-  .button:hover {
-    border-color: #D0D1CD;
-    color: #363636;
-  }
-  .button:focus, .button.is-focused {
-    border-color: #eeeeee;
-    color: #363636;
-  }
-
-  .button:focus, .input:focus {
-    outline: none;
-  }
-
-  .button:disabled{
-    opacity: 0.3;
-  }
-
   .wellDone{
     flex: initial; 
-    background-color: #2c2c2c; 
+    background-color: #202020; 
     width: 80%; 
     height: 70%;
     border-radius: 1rem;
