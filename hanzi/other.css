@@ -126,6 +126,9 @@ transform-style: preserve-3d;
     color: #d1cfcf;
     font-family: kaiti;
     margin: 10px;
+    border-bottom: 10px solid #be1818;
+    border-top: 10px solid #be1818;
+
   }
 
   .descrip{
