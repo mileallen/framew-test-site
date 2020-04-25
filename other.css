@@ -1,0 +1,188 @@
+@import url(chota.min.css);
+
+
+.containCol {
+  display: flex; 
+  justify-content:space-between; 
+  flex-direction: column; 
+  align-items: center;
+}
+
+.containRow {
+  display: flex; 
+  justify-content: center;
+  flex-direction: row; 
+  align-items: center;
+}
+
+.containCent {
+  display: flex; 
+  justify-content: center;
+  flex-direction: column; 
+  align-items: center;
+  height: 100%;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+
+.screen1{
+  height: 600px;
+  /* background-color: #2c2c2c; */
+  background-color: #202020;
+  border-radius: 1.5rem;
+  border-color: transparent;
+}
+
+.headTop{
+  flex: initial; 
+  width:100%; 
+  /* align-self: flex-start; */
+  display: flex; 
+  flex-direction: row; 
+  justify-content: space-between;
+  margin: 1rem;
+  padding: 1rem;
+}
+
+.grid {
+	display: grid;
+	grid-template-columns: repeat(3, 90px);
+	grid-template-rows: repeat(4, 90px);
+	grid-gap: 10px;
+	position: relative;
+}
+
+.tile {
+position: relative;
+transition: 0.3s;
+transform-style: preserve-3d;
+/* font-family: kaiti; */
+}
+
+.tile .front,  .tile .back{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    backface-visibility: hidden;
+    border: 0px solid #000000;
+    opacity: 1.0;
+  }
+
+  .charClas{
+    font-size: 4rem;
+    font-family: kaiti;
+  }
+
+  .tile .front {
+    background: #be1818;
+    color: rgba(40, 40, 40, 0.3);
+    font-size: 2.5rem;
+    z-index: 2;
+    transform: rotateY(0deg);
+  }
+
+  .tile .back {
+    background: #dddddd;
+  }
+
+  .c-flipped, .c-matched, .back{
+    transform: rotateY(180deg);
+  }
+  
+  .c-matched, .back{
+    opacity: 0.8;
+    border: 5px solid #ffee00;
+    border-radius: 8px;
+  }
+
+  @font-face {font-family: "kaiti"; 
+    font-display: swap;
+    src: url("kaiti-GB.woff") format("woff");
+    src: url("https://db.onlinewebfonts.com/t/8a1e9fe86f7a9489ec091ec4b78af185.eot"), url("https://db.onlinewebfonts.com/t/8a1e9fe86f7a9489ec091ec4b78af185.eot?#iefix") format("embedded-opentype"), 
+    url("https://db.onlinewebfonts.com/t/8a1e9fe86f7a9489ec091ec4b78af185.woff2") format("woff2"), 
+    url("https://db.onlinewebfonts.com/t/8a1e9fe86f7a9489ec091ec4b78af185.ttf") format("truetype"), 
+    url("https://db.onlinewebfonts.com/t/8a1e9fe86f7a9489ec091ec4b78af185.svg#KaiTi_GB2312") format("svg"); 
+  }
+
+  .redBG {
+    background-color: #be1818 !important;
+    color: #e2e2e2 !important; 
+  }
+
+  .inputMarg{
+    margin: 0.2rem;
+    padding: 0.2rem;
+  }
+
+  .name{
+    font-size: 6.5rem;
+    color: #d1cfcf;
+    font-family: kaiti;
+    margin: 10px;
+    border-bottom: 10px solid #be1818;
+    border-top: 10px solid #be1818;
+
+  }
+
+  .descrip{
+    font-size: 1.7rem;
+    color: #d1cfcf;
+    font-family: sans-serif;
+    width:80%;
+    text-align: center;
+    margin: 10px;
+
+  }
+
+  .name2{
+    font-size: 2rem;
+    color: #d1cfcf;
+    font-family: sans-serif;
+    margin: 10px;
+  }
+
+  .descrip2{
+    font-size: 1.3rem;
+    font-weight: 300;
+    color: #d1cfcf;
+    font-family: sans-serif;
+    width:80%;
+    margin: 10px;
+
+  }
+
+
+ a:link {
+    color: rgba(250, 250, 250, 0.3);
+    text-decoration: none;
+  }
+
+  .score{
+    color: rgba(240, 240, 240, 0.3);
+    font-size: 2.2rem;
+    padding: 2rem;
+    flex: initial;
+  }
+
+  .wellDone{
+    flex: initial; 
+    background-color: #202020; 
+    width: 80%; 
+    height: 70%;
+    border-radius: 1rem;
+    border: 10px solid #be1818;
+    display: flex;
+    align-items: center;
+    justify-content: center
+  }
+
+  div.wellDone p {
+    margin: 0 }
+
