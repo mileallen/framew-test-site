@@ -33,7 +33,7 @@ return {
 
     twotiles: { flip1: {}, flip2: {} },
 
-    totalMatches: 5,
+    totalMatches: 0,
     totMoves: 0,
     countFlip: 0,
     gameOver: false,
