@@ -33,7 +33,7 @@ return {
 
     twotiles: { flip1: {}, flip2: {} },
 
-    totalMatches: 0,
+    totalMatches: 5,
     totMoves: 0,
     countFlip: 0,
     gameOver: false,
@@ -61,6 +61,10 @@ return {
         .sort(() => Math.random() - Math.random())
         
         this.twotiles.flip1 = this.twotiles.flip2 = null
+
+        setTimeout( ()=>{
+            this.$refs.gameGrid.style.opacity=1
+        }, 50 )
     },
 
     afterFlip(whichtile) {
@@ -84,6 +88,9 @@ return {
 
                 if (this.totalMatches>5) {
                     this.gameOver = true
+                    setTimeout( ()=>{
+                        this.$refs.endGame.style.opacity=1
+                    }, 100 )
                     }
 
                 }, 450)
@@ -103,6 +110,34 @@ return {
             
     }
 
+},
+
+showInit(){
+
+    this.$refs.title.style.opacity=1
+    setTimeout( ()=>{
+        this.$refs.gameGrid.style.opacity=1
+    }, 100 )
+},
+
+showEdit() {
+
+    this.homePage=!this.homePage
+
+if (!this.homePage) {
+
+    setTimeout( ()=>{
+        this.$refs.editAll.style.opacity=1
+    }, 100 )
+}
+
+else {
+
+    setTimeout( ()=>{
+        this.$refs.gameGrid.style.opacity=1
+    }, 100 )
+}
+    
 }
 
 }
