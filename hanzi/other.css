@@ -1,20 +1,108 @@
-@import url(chota.min.css);
+ /* @import url(chota.min.css); */
 
+:root{
+  --clr1: #be1818;
+  --baseText: 12px;
+  --greyLL: #e7e7e7;
+  --greyL: #adadad;
+  --greyD: #7a7a7a;
+  --liteMask: #a7a6a65d;
+  --bodyBG: #2c2c2c;
+  --gameBG: #222222;
+  --charFont: 40px;
+  --meanFont: 15px;
+  }
+    html, body {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    font-size: var(--baseText);
+    background-color: var(--bodyBG);
+  }
+  
+  .main {
+    height: 100%;
+    display: grid;
+    grid-gap: 1em;
+    grid-template-columns: 1fr;
+  
+    font-family: -apple-system,BlinkMacSystemFont,Avenir,"Avenir Next","Segoe UI","Roboto","Oxygen","Ubuntu","Cantarell","Fira Sans","Droid Sans","Helvetica Neue",sans-serif;
+  }
 
-.containCol {
-  display: flex; 
-  justify-content:space-between; 
-  flex-direction: column; 
-  align-items: center;
-}
+  a:link {
+    color: rgba(250, 250, 250, 0.3);
+    text-decoration: none;
+  }
+  
+  .name{
+    font-size: 6.5rem;
+    color: #d1cfcf;
+    font-family: kaiti;
+    margin: 10px;
+    border-bottom: 10px solid var(--clr1);
+    border-top: 10px solid var(--clr1);
 
-.containRow {
-  display: flex; 
-  justify-content: center;
-  flex-direction: row; 
-  align-items: center;
-}
-
+    opacity: 0.2;
+    transition: ease 10s;
+  }
+  .descrip{
+    font-size: 1.7rem;
+    font-weight: 300;
+    color: #d1cfcf;
+    width:80%;
+    text-align: center;
+    margin: 10px;
+  }
+  .name2{
+    font-size: 2rem;
+    font-weight: 300;
+    color: #d1cfcf;
+    margin: 10px;
+  }
+  .descrip2{
+    font-size: 1.3rem;
+    font-weight: 300;
+    color: #d1cfcf;
+    width:80%;
+    margin: 10px;
+  }
+  
+  @media (min-width: 40em) {
+    .main {
+        grid-template-columns: 1fr minmax(360px, 1fr) 1fr;
+    }
+    header {
+      grid-column: 1 / 2;
+    }
+    .gamearea {
+        grid-column: 2 / 3;
+    }
+    header .title {
+      font-size: 5rem;
+    }
+    
+  }
+  
+  .gamearea{
+    height: 90%;
+    padding: 0.7rem;
+    background-color: var(--gameBG);
+    border-radius: 1rem;
+    
+    display: grid;
+    gap: 1em; 
+    grid-template-columns: minmax(auto, 30%) 1fr minmax(auto, 30%);
+    grid-template-rows: auto minmax(80%, 1fr) auto;
+    grid-template-areas:
+    "h1 h2 h3"
+    "g g g"
+    "f f f";
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+  }
+  
 .containCent {
   display: flex; 
   justify-content: center;
@@ -25,31 +113,51 @@
   padding-bottom: 1rem;
 }
 
-
-.screen1{
-  height: 600px;
-  /* background-color: #2c2c2c; */
-  background-color: #202020;
-  border-radius: 1.5rem;
-  border-color: transparent;
+.butts {
+  padding: 0.2rem;
+  margin: 0.5rem;
+  width: 8rem;
+  background-color: var(--liteMask);
+  border: 2px solid var(--greyL);
+  color: var(--greyL);
+  border-radius: 0.5rem;
+  text-align: center;
+  cursor: pointer;
+  transition: ease 0.3s;
+}
+.butts:hover {
+  background-color: var(--darkMask);
+  border: 2px solid var(--clr1);
+}
+.butL{
+  grid-area: h1;
+}
+.butR{
+  grid-area: h3;
+}
+.redBG {
+  background-color: #be1818 !important;
+  color: #e2e2e2 !important;
 }
 
-.headTop{
-  flex: initial; 
-  width:100%; 
-  /* align-self: flex-start; */
-  display: flex; 
-  flex-direction: row; 
-  justify-content: space-between;
-  margin: 1rem;
-  padding: 1rem;
+.gamePanel{
+  grid-area: g;
+}
+
+.score{
+  color: rgba(240, 240, 240, 0.3);
+  font-size: 2.2rem;
+  padding: 2rem;
+  text-align: center;
 }
 
 .grid {
+  grid-area: g;
+
 	display: grid;
 	grid-template-columns: repeat(3, 90px);
 	grid-template-rows: repeat(4, 90px);
-	grid-gap: 10px;
+	gap: 10px;
 	position: relative;
 }
 
@@ -57,9 +165,10 @@
 position: relative;
 transition: 0.3s;
 transform-style: preserve-3d;
-/* font-family: kaiti; */
 }
-
+.tile:focus, .front:focus {
+  outline: none;
+}
 .tile .front,  .tile .back{
     position: absolute;
     top: 0;
@@ -74,122 +183,159 @@ transform-style: preserve-3d;
     border: 0px solid #000000;
     opacity: 1.0;
   }
-
-  .charClas{
-    font-size: 4rem;
+.charClas{
+    font-size: var(--charFont);
     font-family: kaiti;
   }
-
-  .tile .front {
-    background: #be1818;
+.meanClas{
+    font-size: var(--meanFont);
+  }
+.tile .front {
+    background: var(--clr1);
     color: rgba(40, 40, 40, 0.3);
     font-size: 2.5rem;
     z-index: 2;
     transform: rotateY(0deg);
-  }
-
-  .tile .back {
+}
+.tile .back {
     background: #dddddd;
-  }
-
-  .c-flipped, .c-matched, .back{
+}
+.c-flipped, .c-matched, .back{
     transform: rotateY(180deg);
-  }
-  
-  .c-matched, .back{
+}
+.c-matched {
     opacity: 0.8;
     border: 5px solid #ffee00;
-    border-radius: 8px;
-  }
+    border-radius: 10px;
+}
 
-  @font-face {font-family: "kaiti"; 
+@font-face {
+    font-family: "kaiti"; 
     font-display: swap;
     src: url("kaiti-GB.woff") format("woff");
-     src: url("https://db.onlinewebfonts.com/t/8a1e9fe86f7a9489ec091ec4b78af185.eot"), url("https://db.onlinewebfonts.com/t/8a1e9fe86f7a9489ec091ec4b78af185.eot?#iefix") format("embedded-opentype"), 
+    /* src: url("https://db.onlinewebfonts.com/t/8a1e9fe86f7a9489ec091ec4b78af185.eot"), url("https://db.onlinewebfonts.com/t/8a1e9fe86f7a9489ec091ec4b78af185.eot?#iefix") format("embedded-opentype"), 
     url("https://db.onlinewebfonts.com/t/8a1e9fe86f7a9489ec091ec4b78af185.woff2") format("woff2"), 
     url("https://db.onlinewebfonts.com/t/8a1e9fe86f7a9489ec091ec4b78af185.ttf") format("truetype"), 
-    url("https://db.onlinewebfonts.com/t/8a1e9fe86f7a9489ec091ec4b78af185.svg#KaiTi_GB2312") format("svg"); 
+    url("https://db.onlinewebfonts.com/t/8a1e9fe86f7a9489ec091ec4b78af185.svg#KaiTi_GB2312") format("svg"); */
   }
 
-  .redBG {
-    background-color: #be1818 !important;
-    color: #e2e2e2 !important; 
+.copy{
+    grid-area: f;
   }
 
-  .inputMarg{
-    margin: 0.2rem;
-    padding: 0.2rem;
-  }
-
-  .name{
-    font-size: 6.5rem;
-    color: #d1cfcf;
-    font-family: kaiti;
-    margin: 10px;
-    border-bottom: 10px solid #be1818;
-    border-top: 10px solid #be1818;
-
-    opacity: 0.2;
-    transition: ease 10s;
-  }
-
-  .descrip{
-    font-size: 1.7rem;
-    color: #d1cfcf;
-    font-family: sans-serif;
-    width:80%;
-    text-align: center;
-    margin: 10px;
-
-  }
-
-  .name2{
-    font-size: 2rem;
-    color: #d1cfcf;
-    font-family: sans-serif;
-    margin: 10px;
-  }
-
-  .descrip2{
-    font-size: 1.3rem;
-    font-weight: 300;
-    color: #d1cfcf;
-    font-family: sans-serif;
-    width:80%;
-    margin: 10px;
-
-  }
-
-
- a:link {
-    color: rgba(250, 250, 250, 0.3);
-    text-decoration: none;
-  }
-
-  .score{
-    color: rgba(240, 240, 240, 0.3);
-    font-size: 2.2rem;
-    padding: 2rem;
-    flex: initial;
-  }
-
-  .editOp{
+.editOp{
     opacity: 0.05;
     transition: ease-out 0.7s;
   }
 
-  .wellDone{
-    flex: initial; 
+.wellDone{
+    grid-area: g;
+
     background-color: #202020; 
     width: 80%; 
-    height: 70%;
+    height: 400px;
     border-radius: 1rem;
-    border: 10px solid #be1818;
+    border: 10px solid var(--clr1);
     display: flex;
     align-items: center;
     justify-content: center
   }
 
-  div.wellDone p {
+div.wellDone p {
     margin: 0 }
+
+.editCharSize {
+grid-area: g;
+
+  display: grid;
+  grid-column: auto auto;
+  grid-row: auto auto auto auto;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  grid-template-areas: 
+  "char text"
+  "m m"
+  "icon1 icon2"
+  "t1 t2"
+  ;
+  justify-items: center;
+}
+.editGrid {
+  display: grid;
+  grid-column: auto;
+  grid-row: repeat(7, minmax(100px, auto));
+  gap: 0.5rem;
+  padding: 0.5rem;
+  justify-items: center;
+}
+.editA{
+  grid-area: char;
+}
+.editb{
+  grid-area: text;
+}
+
+input, input:hover {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: 1px solid transparent
+}
+input:focus {
+  outline: none;
+}
+.inputMarg {
+  margin: 0.2rem;
+  padding: 0.2rem;
+  border-radius: 0.3rem;
+}
+
+.editHead2{
+  grid-area: m;
+  color: var(--greyL);
+  font-size: 2rem;
+}
+.editIcon{
+  font-size: 2rem;
+  font-weight: 700; 
+  color: rgba(250, 250, 250, 0.3);
+  cursor: pointer;
+
+  z-index: 2;
+  transition: ease 0.3s;
+}
+.editIcon:hover{
+  color: var(--clr1);
+}
+.ei1{
+  grid-area: icon1;
+}
+.ei2{
+  grid-area: icon2;
+}
+
+.noClick {
+  pointer-events: none;
+  filter: grayscale(1);
+  opacity: 0.5;
+}
+
+.edTile{
+  background-color: #e7e7e7;
+  width: 90px;
+  height: 90px;
+  border-radius: 6px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.et1{
+  grid-area: t1;
+  font-size: var(--charFont);
+}
+.et2{
+  grid-area: t2;
+  font-size: var(--meanFont);
+}
 

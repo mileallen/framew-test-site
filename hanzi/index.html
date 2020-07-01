@@ -6,20 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#be1818">
     <title>Learn Hanzi charachters</title>
-    
-<link rel="stylesheet" href="./other.css">
 
-<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+    <link rel="shortcut icon" href="./favicon.png" type="image/png">
+    <link rel="stylesheet" href="./other.css">
 
-<!-- <script src="../alpine.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script> -->
+
+<script src="../alpine.js"></script> 
 
 </head>
 
 
-<body style="background-color: #2c2c2c;">
+<body>
 
-    <div class="row" id="app" x-data="hanyuGame()" x-init="showInit()">
-        <div class="col-12 col-6-md col-4-lg">
+    <div class="main" id="app" x-data="hanyuGame()" x-init="showInit()">
+        <div>
             
         <div class="containCent"><span class="name" x-ref="title">汉字游戏</span>
             <span class="descrip">Learn and memorize Hanzi characters, or whatever else!</span>
@@ -28,20 +29,16 @@
 
         </div>
 
-        <div class="col-12 col-6-md col-4-lg">
+            <div class="gamearea">
 
-            <div class="containCol screen1">
-
-                <div class="headTop">
-                    <button class="button outline secondary" :disabled="gameOver" x-text="homePage ? 'Edit Tiles' : 'Back to Game'" @click="showEdit()" :class="{'redBG': homePage === false}"></button>
+                    <div class="butts butL" x-text="homePage ? 'Edit Tiles' : 'Back to Game'" @click="showEdit()" :class="{'redBG': !homePage, 'noClick': gameOver }"></div>
                     
-                    <button class="button outline secondary" @click="resetGame()">Reset Game</button>
-                </div>
+                    <div class="butts butR" @click="resetGame()">Reset Game</div>
 
 
                 <template x-if="homePage && !gameOver">
 
-                    <div class="containCol editOp" x-ref="gameGrid">
+                    <div class="gamePanel editOp" x-ref="gameGrid">
 
                         <div class="score"> Moves: <span x-text="totMoves"></span></div>
 
@@ -50,11 +47,11 @@
                             <template x-if="tiles" x-for="tile in tiles" :key="tile.id">
 
                                 <div class="tile"
-                                    :class="{'c-flipped': tile.flipped === true, 'c-matched': tile.matched === true}">
+                                    :class="{'c-flipped': tile.flipped, 'c-matched': tile.matched }">
                                     <button class="front" @click="{tile.flipped = true}; afterFlip(tile)">
                                         ☆
                                     </button>
-                                    <div class="back" :class="{'charClas': tile.char != null}"
+                                    <div class="back" :class="{'charClas': tile.char != null , 'meanClas': tile.mean != null}"
                                         x-text="tile.char || tile.mean"></div>
                                 </div>
 
@@ -67,21 +64,43 @@
 
                 <template x-if="!homePage && !gameOver">
 
-                    <div class="containRow editOp" x-ref="editAll">
-                        <div class="containCol"><span
+                    <div class="editCharSize editOp" x-ref="editAll">
+
+                        <div class="editGrid editA"><span
                                 style="font-size: 1.5rem; color: rgba(250, 250, 250, 0.3);">Tiles</span>
+                                
                             <template x-if="kanjis" x-for="kanji in kanjis" :key="kanji.id">
-                                <input class="input text-center inputMarg" type="text" x-model="kanji.char" />
+                                <input class="inputMarg" type="text" x-model="kanji.char" />
                             </template>
+
+                        
                         </div>
-                        <div class="containCol"><span
+                        <div class="editGrid editB"><span
                                 style="font-size: 1.5rem; color: rgba(250, 250, 250, 0.3);">Match with</span>
+
                             <template x-if="words" x-for="word in words" :key="word.id">
-                                <input class="input text-center inputMarg" type="text" x-model="word.mean"/>
+                                <input class="inputMarg" type="text" x-model="word.mean"/>
                             </template>
+
+
                         </div>
 
+                        <div class="editHead2">Size on Tile</div>
+
+                        <div class="ei1"> 
+                            <span class="editIcon" @click="sizeUp(75, 'char')" :class="{ 'noClick' : maxmin.charSize.maxed }">&#x1f5da; </span> 
+                            <span class="editIcon" @click="sizeDown(10, 'char')" :class="{ 'noClick' : maxmin.charSize.mined }"> &#x1f5db;</span></div>
+
+                        <div class="ei2">  
+                            <span class="editIcon" @click="sizeUp(30, 'mean')" :class="{ 'noClick' : maxmin.meanSize.maxed }">&#x1f5da; </span> 
+                            <span class="editIcon" @click="sizeDown(10, 'mean')" :class="{ 'noClick' : maxmin.meanSize.mined }"> &#x1f5db;</span></div>
+
+                        <div class="edTile et1" x-text="kanjis[0].char"></div>
+                        <div class="edTile et2" x-text="words[0].mean"></div>
+
                     </div>
+
+
 
                 </template>
 
@@ -91,7 +110,7 @@
                 </div>
                 </template>
 
-                <div style="flex: initial; align-self: flex-end; width:100%; padding-top: 1rem;">
+                <div class="copy" style="flex: initial; align-self: flex-end; width:100%; padding-top: 1rem;">
 
                     <p style="font-size: 0.9rem; color: rgba(250, 250, 250, 0.3); line-height: 1rem; margin-left: auto; margin-right: auto; width:80%; text-align: center;">
                         © 2020 <a href="https://twitter.com/sachwry">Sach Wry</a> <br />
@@ -100,9 +119,7 @@
 
             </div>
 
-        </div>
-
-        <div class="col-12 col-6-md col-4-lg">
+        <div>
             <div class="containCent"><span class="name2">Objective</span>
                 <p class="descrip2">Could not be simpler. It's like one of those Pelmanism card games - Concentration, <i>Pexeso</i>, 神経衰弱, Match-up or <a href="https://en.wikipedia.org/wiki/Concentration_(tile_game)">whatever</a> you call it. Just find matching pairs.</p>
                 <p class="descrip2">Note: tiles are matched in pairs, in sequence => [1st to 2nd], [3rd to 4th]... and so on. Say you flip one, X, then a second, Y, if they don't match they flip right back. That's one 'move', which implies that the pairing stars anew. If you think the next tile you then flip, Z, matches the second you just saw,, Y, you need to flip that tile, Y, next.</p>
