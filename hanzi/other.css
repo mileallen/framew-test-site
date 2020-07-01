@@ -212,11 +212,11 @@ transform-style: preserve-3d;
 @font-face {
     font-family: "kaiti"; 
     font-display: swap;
-    src: url("kaiti-GB.woff") format("woff");
-    /* src: url("https://db.onlinewebfonts.com/t/8a1e9fe86f7a9489ec091ec4b78af185.eot"), url("https://db.onlinewebfonts.com/t/8a1e9fe86f7a9489ec091ec4b78af185.eot?#iefix") format("embedded-opentype"), 
+    /* src: url("kaiti-GB.woff") format("woff"); */
+    src: url("https://db.onlinewebfonts.com/t/8a1e9fe86f7a9489ec091ec4b78af185.eot"), url("https://db.onlinewebfonts.com/t/8a1e9fe86f7a9489ec091ec4b78af185.eot?#iefix") format("embedded-opentype"), 
     url("https://db.onlinewebfonts.com/t/8a1e9fe86f7a9489ec091ec4b78af185.woff2") format("woff2"), 
     url("https://db.onlinewebfonts.com/t/8a1e9fe86f7a9489ec091ec4b78af185.ttf") format("truetype"), 
-    url("https://db.onlinewebfonts.com/t/8a1e9fe86f7a9489ec091ec4b78af185.svg#KaiTi_GB2312") format("svg"); */
+    url("https://db.onlinewebfonts.com/t/8a1e9fe86f7a9489ec091ec4b78af185.svg#KaiTi_GB2312") format("svg");
   }
 
 .copy{
